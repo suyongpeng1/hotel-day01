@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--启动命令：mybatis-generator:generate -e-->
+    <properties resource="db.properties"></properties>
+    <classPathEntry location="${driverLocation}"/>
+    <context id="context1" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否去除所有自动生成的文件的时间戳，默认为false -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}">
+        </jdbcConnection>
+        <!-- targetPackage:包名称(自定义)  targetProject：项目路径(自定义)   -->
+        <!--定义model的包名称:POJO实体类-->
+        <javaModelGenerator targetPackage="cn.kgc.demo.pojo" targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 配置生成相应的实体Mapper.xml，对于Mapper3.X我们需要把type="XMLMAPPER" -->
+        <!-- targetPackage:包名称(自定义)  targetProject：项目路径(自定义)   -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 配置生成相应的接口类，对应与Mapper.xml中的一系列CRUD方法SQL语句 -->
+        <!-- targetPackage:包名称(自定义)  targetProject：项目路径(自定义)   -->
+        <javaClientGenerator targetPackage="cn.kgc.demo.dao" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!--
+        tableName="表名"
+        domainObjectName="实体类名"
+        -->
+        <table schema="SSMBlog" tableName="authority" domainObjectName="Authority"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 2.入住信息表 -->
+        <table schema="SSMBlog" tableName="in_room_info" domainObjectName="InRoomInfo"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 3.订单表 -->
+        <table schema="SSMBlog" tableName="orders" domainObjectName="Orders"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 4.角色权限关系表 -->
+        <table schema="SSMBlog" tableName="role_auth" domainObjectName="RoleAuth"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 5.角色表 -->
+        <table schema="SSMBlog" tableName="roles" domainObjectName="Roles"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 6.客房类型表 -->
+        <table schema="SSMBlog" tableName="room_type" domainObjectName="RoomType"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 7.客房信息表 -->
+        <table schema="SSMBlog" tableName="rooms" domainObjectName="Rooms"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 8.销售记录表 -->
+        <table schema="SSMBlog" tableName="roomsale" domainObjectName="RoomSale"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 9.系统用户表 -->
+        <table schema="SSMBlog" tableName="user" domainObjectName="User"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <!-- 10.会员表 -->
+        <table schema="SSMBlog" tableName="vip" domainObjectName="Vip"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+    </context>
+</generatorConfiguration>

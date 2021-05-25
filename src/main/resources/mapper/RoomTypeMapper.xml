@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.demo.dao.RoomTypeMapper" >
+  <resultMap id="BaseResultMap" type="cn.kgc.demo.pojo.RoomType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="room_type_name" property="roomTypeName" jdbcType="VARCHAR" />
+    <result column="room_price" property="roomPrice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, room_type_name, room_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from room_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from room_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.kgc.demo.pojo.RoomType" >
+    insert into room_type (id, room_type_name, room_price
+      )
+    values (#{id,jdbcType=INTEGER}, #{roomTypeName,jdbcType=VARCHAR}, #{roomPrice,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.kgc.demo.pojo.RoomType" >
+    insert into room_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roomTypeName != null" >
+        room_type_name,
+      </if>
+      <if test="roomPrice != null" >
+        room_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roomTypeName != null" >
+        #{roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomPrice != null" >
+        #{roomPrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.kgc.demo.pojo.RoomType" >
+    update room_type
+    <set >
+      <if test="roomTypeName != null" >
+        room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomPrice != null" >
+        room_price = #{roomPrice,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.kgc.demo.pojo.RoomType" >
+    update room_type
+    set room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+      room_price = #{roomPrice,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--*******************自定义操作**********************-->
+                 <!--客房类型数据的全查询-->
+  <select id="selTAll" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List"/> from room_type order by id desc
+  </select>
+
+  <!---根据条件分页查询的客房类型数据-->
+  <select id="selAllTByPageParams" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from room_type
+    <where>
+    </where>
+    order by id desc
+  </select>
+
+
+  <!--根据客房类型名称查询是否有客房类型数据-->
+  <select id="selCountByParams" resultType="java.lang.Long">
+    select count(1) from room_type
+    <where>
+      <if test="roomTypeName!=null and roomTypeName!=''">
+        and room_type_name = #{roomTypeName}
+      </if>
+    </where>
+  </select>
+</mapper>

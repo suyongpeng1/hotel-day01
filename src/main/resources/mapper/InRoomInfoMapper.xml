@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.demo.dao.InRoomInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.kgc.demo.pojo.InRoomInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="is_vip" property="isVip" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="REAL" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="room_id" property="roomId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="out_room_status" property="outRoomStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_name, gender, is_vip, idcard, phone, money, create_date, room_id, status, 
+    out_room_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from in_room_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from in_room_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.kgc.demo.pojo.InRoomInfo" >
+    insert into in_room_info (id, customer_name, gender, 
+      is_vip, idcard, phone, 
+      money, create_date, room_id, 
+      status, out_room_status)
+    values (#{id,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{isVip,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{money,jdbcType=REAL}, #{createDate,jdbcType=TIMESTAMP}, #{roomId,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{outRoomStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.kgc.demo.pojo.InRoomInfo" >
+    insert into in_room_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="isVip != null" >
+        is_vip,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="outRoomStatus != null" >
+        out_room_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="isVip != null" >
+        #{isVip,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="outRoomStatus != null" >
+        #{outRoomStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.kgc.demo.pojo.InRoomInfo" >
+    update in_room_info
+    <set >
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="isVip != null" >
+        is_vip = #{isVip,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="outRoomStatus != null" >
+        out_room_status = #{outRoomStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.kgc.demo.pojo.InRoomInfo" >
+    update in_room_info
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      is_vip = #{isVip,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},z
+      money = #{money,jdbcType=REAL},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      room_id = #{roomId,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      out_room_status = #{outRoomStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--*********************自定义操作*****************************-->
+  <!--自定义入住信息和客房信息的查询结果集（嵌套查询）-->
+  <resultMap id="inRoomInfoAndSelRoomsMap" type="InRoomInfo" extends="BaseResultMap">
+    <association property="rooms" column="room_id"
+                 select="cn.kgc.demo.dao.RoomsMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+  <!--根据条件查询入住信息-->
+  <select id="selAllTByPageParams" resultMap="inRoomInfoAndSelRoomsMap">
+    select <include refid="Base_Column_List"/> from in_room_info
+    <where>
+      and status = '1'
+    </where>
+    order by id desc
+  </select>
+</mapper>
